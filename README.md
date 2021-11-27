@@ -1,5 +1,11 @@
 # Malaria-Detection-CNN
 
+
+## Summary
+
+In this project, we built several different convolutional neural network models in an attempt to accurately classify images of red blood cells as either parasitized or uninfected. We used an array of different techniques to better our performance from the base model (three convolutional layers each followed by max pooling and dropout layers) including adding more layers, batch normalization, changing activation functions, image alterations, and hyperparameter tuning using Keras Tuner. **Our best model ended up being our base model with one added convolutional layer followed by an additional max pooling layer and dropout layer**. We then improved performance by finding the optimal hyperparameters using Keras Tuner, and then found that feeding this model grayscaled images allowed stronger classification. 
+
+
 ## Context
 
 Malaria is a contagious disease caused by Plasmodium parasites that are transmitted to humans
@@ -26,6 +32,20 @@ Objective
 ## Objective
 
 To build an efficient computer vision model to detect malaria. The model should identify whether the image of a red blood cell is that of one infected with malaria or not, and classify the name as parasitized or uninfected, respectively. 
+
+## Technologies used
+
+* Numpy
+* Pandas
+* Matplotlib
+* Seaborn
+* Sklearn
+* TensorFlow(Keras)
+* KerasTuner
+* ImageDataGenerator (from Keras)
+* VGG16
+* OpenCV(cv2)
+
 
 ## The Data
 
@@ -118,7 +138,7 @@ In this phase, we shifted our focus towards the dataset itself rather than our m
 
 <img width="305" alt="Screen Shot 2021-11-26 at 6 06 48 PM" src="https://user-images.githubusercontent.com/88220704/143661887-18466dea-a712-43fb-b2d2-983bdfab61b3.png">
 
-### Results: 
+#### Results: 
 
 Despite strong performance for the uninfected class, we saw poor performance for the infected class which is what we are most interested in. 
 
@@ -126,9 +146,85 @@ Despite strong performance for the uninfected class, we saw poor performance for
 
 HSV or Hue Saturation Value is used to seperate image luminance from color information. By converting our images to HSV, our model might have an easier time classifying the images. 
 
+<img width="235" alt="Screen Shot 2021-11-26 at 6 12 21 PM" src="https://user-images.githubusercontent.com/88220704/143662039-da0e09f9-61e1-4b77-87f1-3c1cd3d2fd86.png">
+
+#### Results: 
+
+<img width="260" alt="Screen Shot 2021-11-26 at 6 12 52 PM" src="https://user-images.githubusercontent.com/88220704/143662055-aa68349c-ca65-42a1-aa7b-de52beb22634.png">
+
+Interestingly, we see an extremely srtong performance for our targeted recall score of the infected class (only 46 misclassifications) however the model performed very poorly on all other metrics using these images. Therefore, we did not move forward with this model. 
+
+### Grayscale
+
+Grayscale conversion might help remove some of the noise that may be contributing to the misclassifications of our model. 
+
+<img width="249" alt="Screen Shot 2021-11-26 at 6 16 08 PM" src="https://user-images.githubusercontent.com/88220704/143662131-14991b3f-23cd-4b0f-82ff-5f0ffba738f5.png">
+
+#### Results
+
+<img width="267" alt="Screen Shot 2021-11-26 at 6 17 18 PM" src="https://user-images.githubusercontent.com/88220704/143662154-6a88c45f-fc4f-4678-9291-b9d836d4a367.png">
 
 
 
+The metrics show that this was our best performance. As indicated by the green circle, the number of misclassified infected cells is only 68 while the rest of our performance metrics all remain very strong. 
+
+## Conclusion:
+
+In this project, we explored a number of ways for building a deep learning model that can
+accurately detect infected red blood cells from a set of images. These techniques ranged from
+image pre-processing techniques, model alterations and hyperparameter tuning, as well as the use
+of a pre-trained model. After trialing these techniques, we were able to identify a model that
+provides a balanced performance, meaning that the accuracy metrics were all relatively high.
+Despite obtaining a strong model, we did not exhaust all the available options available to
+maximize performance even further. Thus, for future improvement it would be worth exploring
+options such as trying other pre-trained models and using transfer learning. Finding models that
+have already been carefully crafted for a dataset similar to ours can be highly beneficial because
+we could simply alter some of its features to fit our problem. 
+
+Additionally, we can actually display the cells that are being misclassified and try to understand why, and then consult with
+medical experts to obtain a better understanding or even have them correct any potential
+misclassified labels of the dataset. After these improvements, our next step would be to begin
+deployment of our model, so that we can use its capabilities in real time and reach our overall
+goal of detecting malaria as soon as possible to help eradicate its consequences. This would
+involve communication with the engineering team to create a pipeline which would grant us
+greater control and flexibility for our model, as well as scalability. This is important because we
+were only dealing with a single dataset for our current model whereas we will want it to be able to process much more data and in real time, so if there are issues then we want to be able to
+quickly fix it and a pipeline will help greatly with that.
+
+## Problem and Solution Summary
+
+Our main challenge was being able to distinguish between red blood cells that are
+infected, and those that are not. Different features such as color, opacity, and other types of noise
+can make it difficult for our automated model to make this distinction. Thus, our main objective
+was to utilize different techniques to both equip our model to be more effective at this task and
+also alter the images in a way to make this goal less challenging. We tried various techniques
+such as HSV conversion and augmentation for our images, as well as adding features to our
+model such as batch normalization. Our final proposed solution design involves grayscale
+images being fed into a keras-tuned model. The grayscale conversion helped eliminate some of
+the noise of the images that may have contributed to the misclassification of some of our images,
+while the keras tuner helped us obtain the best hyperparameters needed for our model to work
+optimally with the data.
+
+## Next Steps
+
+Our grayscale technique helped make the images easier to classify for our model,
+however one thing to consider is that the removal of colour may pose a potential limitation with
+future data. If for example, a red blood cell has a characteristic that appears similar to that of an
+infected cell but can only be distinguished by its colour, then our model might fail to make that
+distinction. Thus, communication with medical experts on this topic might help us better explore this potential limitation and thus create contingencies that will help prevent it from being a
+problem. Another key challenge involves the keras tuner. Firstly, the keras tuner runs a
+combination of random values for the hyperparameters which may not exactly cover the most
+optimal possible values, and secondly it can be very slow to run. Thus, other tuning techniques
+such as Bayesian optimization may produce better results because it allows us to jointly tune
+more parameters with fewer experiments and find better values, all at a potentially quicker speed.
+The slow speeds of our tuning might also mean that we should consult with the engineering team
+to make sure an appropriate environment can be established so that when further potential tuning
+happens down the line, we won’t be limited by slow processing speeds. This is especially
+important considering we will be working with live data and in high amounts. Thus, consultation
+with both medical experts for further intuition on image distinction as well as with the
+engineering team to establish an appropriate environment for deployment should be of priority
+importance. Following that, we can explore different tuning methods such as bayesian or grid
+search to find even better hyperparameters than what we found with our Keras tuner.
 
 ## Sources: 
 

@@ -226,19 +226,7 @@ engineering team to establish an appropriate environment for deployment should b
 importance. Following that, we can explore different tuning methods such as bayesian or grid
 search to find even better hyperparameters than what we found with our Keras tuner.
 
-## Sources: 
 
-https://towardsdatascience.com/machine-learning-part-20-dropout-keras-layers-explained-8c9f6dc4c9ab 
-
-
-
-Batch normalization and changing the activation produced strong results but they weren't as good as the base model. Image augmentation and the pre-trained model also did not improve our performance. 
-
-KerasTuner allowed us to find the optimal hyperparameters to increase performance. 
-
-Image alteration to grayscale did improve our target recall score, whereas HSV conversion produced poor results across all the data accuracy metrics apart from our targeted recall score- however it doesn't not balance out the poor performance of the other metrics. 
-
-potential future techinques: other pre trained models, transfer learning, bayesian optimization. 
 
 
 

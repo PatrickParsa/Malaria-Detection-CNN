@@ -1,5 +1,7 @@
 # Malaria-Detection-CNN
 
+![Screen Shot 2021-12-07 at 1 11 17 PM](https://user-images.githubusercontent.com/88220704/145091300-3248aa17-1f21-483b-93ad-e9d4eda631ba.png)
+
 
 ## Summary
 

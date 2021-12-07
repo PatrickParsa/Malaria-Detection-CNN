@@ -74,7 +74,8 @@ Our base model contained 3 convolutional layers, each followed by a **MaxPooling
 
 The activation function we used is ReLU (Rectified Linear Unit), which overcomes the vanishing gradient problem allowing our models to learn faster and perform better. It is a piecewise linear function that will output the input directly if it is positive, otherwise, it will output zero. 
 
-<img width="327" alt="Screen Shot 2021-11-26 at 5 16 06 PM" src="https://user-images.githubusercontent.com/88220704/143660613-94ca9494-11b2-4060-8c57-6be9cb4cbe00.png">
+![Screen Shot 2021-12-07 at 1 28 11 PM](https://user-images.githubusercontent.com/88220704/145093555-1db9eb44-94c4-47e7-acdd-213916c47693.png)
+
 
 ### Results: 
 
@@ -96,7 +97,9 @@ In this phase, we decided to add **Batch Normalization** and changed the activat
 
 **LeakyReLU**(Leaky Rectified Linear Unit) is a type of activation function base on a ReLU but has a small slope for negative values instead of a flat slope. Sometimes in a ReLU layer, you may come across the problem of "dying ReLU" which happens when your ReLU always has values under 0 which blocks learning in the ReLU because of gradients of 0 in the negative part. Thus, LeakyReLU solves this problem by allowing a small gradient when the unit is not active.  
 
-<img width="190" alt="Screen Shot 2021-11-26 at 5 40 50 PM" src="https://user-images.githubusercontent.com/88220704/143661266-05f7bb34-fd3c-4471-995e-5ecd2116a7cb.png">
+![Screen Shot 2021-12-07 at 1 28 36 PM](https://user-images.githubusercontent.com/88220704/145093587-0832d864-c170-4875-995b-79f4397e7051.png)
+
+
 
 ### Results: 
 
